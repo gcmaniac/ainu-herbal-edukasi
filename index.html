@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ainu Herbal — Edukasi Kesehatan & Solusi Pengobatan Herbal Alami</title>
+  <meta name="description" content="Pusat edukasi penyakit dan solusi pengobatan herbal alami oleh Ainu Herbal. Pelajari gejala, penyebab, dan ikhtiar sehat alami dari akarnya.">
+  <link rel="canonical" href="https://gcmaniac.github.io/ainu-herbal-edukasi/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ainu Herbal">
+  <meta property="og:title" content="Ainu Herbal — Edukasi Kesehatan & Pengobatan Herbal Alami">
+  <meta property="og:description" content="Edukasi penyakit & ramuan herbal murni untuk ikhtiar sehat alami dari akarnya. Konsultasi WA: 0852-8674-7289.">
+  <meta property="og:image" content="https://gcmaniac.github.io/ainu-herbal-edukasi/images/ainu-herbal-logo.jpg">
+  <style>
+:root {
+  --emerald: #0f5132;
+  --emerald-light: #198754;
+  --cream: #f7faf7;
+  --ink: #1a2421;
+  --muted: #52635c;
+  --border: #dce7e1;
+  --card: #ffffff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+}
+header.site-header {
+  background: var(--emerald);
+  color: #fff;
+  padding: 16px 20px;
+  border-bottom: 4px solid #d4af37;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d4af37;
+}
+.nav-links a {
+  color: #e9f5ee;
+  text-decoration: none;
+  margin-left: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.nav-links a:hover { text-decoration: underline; }
+main {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 20px 48px;
+}
+.hero {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+}
+.hero h1 { margin-top: 0; color: var(--emerald); font-size: 1.9rem; line-height: 1.25; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 81, 50, 0.1);
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #edf3ef;
+}
+.card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--emerald);
+  background: #e3f3ea;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+.card h2 { margin: 0 0 8px; font-size: 1.05rem; line-height: 1.35; color: var(--emerald); }
+.card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+article.post {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line-height: 1.25; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+.featured-img {
+  width: 100%;
+  max-width: 560px;
+  display: block;
+  margin: 0 auto 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.cta-box {
+  background: #eaf6ef;
+  border-left: 5px solid var(--emerald-light);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 28px 0;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--emerald-light);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 11px 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.cta-btn:hover { background: var(--emerald); }
+.disclaimer {
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: #f5f7f6;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 20px;
+}
+.related {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.related h2 { font-size: 1.2rem; color: var(--emerald); margin-top: 0; }
+.related ul { columns: 2; padding-left: 18px; }
+@media (max-width: 640px) { .related ul { columns: 1; } }
+.related a { color: var(--emerald); text-decoration: none; }
+.related a:hover { text-decoration: underline; }
+footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+</style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Ainu Herbal", "description": "Solusi Pengobatan Herbal Alami & Edukasi Kesehatan Penyakit untuk Ikhtiar Sehat Alami dari Akarnya.", "url": "https://gcmaniac.github.io/ainu-herbal-edukasi", "logo": "https://gcmaniac.github.io/ainu-herbal-edukasi/images/ainu-herbal-logo.jpg", "sameAs": ["https://www.instagram.com/ainuherbal/", "https://www.facebook.com/1533000039886265"], "contactPoint": {"@type": "ContactPoint", "telephone": "+62-852-8674-7289", "contactType": "customer service", "availableLanguage": "Indonesian"}}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/ainu-herbal-logo.jpg" alt="Logo Ainu Herbal">
+        <span>Ainu Herbal</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="https://www.instagram.com/ainuherbal/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/1533000039886265" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener">Konsultasi WA</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>🌿 Ainu Herbal — Edukasi Kesehatan & Pengobatan Herbal Alami</h1>
+      <p>Kumpulan panduan kesehatan berbasis edukasi medis dan ikhtiar pengobatan herbal murni dari akarnya. Mulai dari gangguan lambung hingga berbagai keluhan kesehatan sehari-hari.</p>
+      <a class="cta-btn" href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener">📲 Konsultasi WA Resmi: 0852-8674-7289</a>
+    </section>
+    <section class="grid">
+      <a class="card" href="artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.html">
+      <img src="images/artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.jpg" alt="Ilustrasi medis 3D cross-section lambung dan kerongkongan menunjukkan katup LES melemah dan cairan asam lambung naik ke dada (GERD) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #1</span>
+        <h2>1. GERD: Bukan Sekadar Maag, Ini Masalah Katup Lambung yang Longgar</h2>
+        <p>GERD: Dada terasa panas terbakar seperti mau serangan jantung, padahal baru selesai makan malam?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-02-2-gastritis-kenapa-ulu-hati-terasa-perih-seperti-diiris-saat-perut-kos.html">
+      <img src="images/artikel-02-2-gastritis-kenapa-ulu-hati-terasa-perih-seperti-diiris-saat-perut-kos.jpg" alt="Ilustrasi medis 3D cross-section lambung menunjukkan peradangan merah merata pada lipatan dinding mukosa lambung (Gastritis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #2</span>
+        <h2>2. Gastritis: Kenapa Ulu Hati Terasa Perih Seperti Diiris saat Perut Kosong</h2>
+        <p>Gastritis: Ulu hati perih melilit, mual, dan langsung begah padahal baru makan tiga suap?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-03-3-tukak-lambung-saat-radang-biasa-sudah-berubah-jadi-luka-terbuka.html">
+      <img src="images/artikel-03-3-tukak-lambung-saat-radang-biasa-sudah-berubah-jadi-luka-terbuka.jpg" alt="Ilustrasi medis 3D lambung dengan kaca pembesar menyoroti erosi luka cekung pada lapisan mukosa lambung (Tukak Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #3</span>
+        <h2>3. Tukak Lambung: Saat Radang Biasa Sudah Berubah Jadi Luka Terbuka</h2>
+        <p>Tukak Lambung: Pernah terbangun tengah malam karena perut bagian atas terasa perih seperti ditusuk, lalu membaik sebentar setelah makan biskuit atau min...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-04-4-dispepsia-fungsional-hasil-endoskopi-normal-tapi-perut-selalu-begah-.html">
+      <img src="images/artikel-04-4-dispepsia-fungsional-hasil-endoskopi-normal-tapi-perut-selalu-begah-.jpg" alt="Ilustrasi medis 3D lambung dengan dinding mukosa bersih sehat dikelilingi serabut saraf hipersensitif menyala (Dispepsia Fungsional) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #4</span>
+        <h2>4. Dispepsia Fungsional: Hasil Endoskopi Normal, Tapi Perut Selalu Begah dan Perih</h2>
+        <p>Dispepsia Fungsional: Sudah periksa ke dokter, bahkan hasil USG atau endoskopi menunjukkan lambung bersih tanpa luka, tapi perut tetap terasa cepat penu...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-05-5-silent-reflux-lpr-asam-lambung-naik-tanpa-panas-di-dada-serangnya-ke.html">
+      <img src="images/artikel-05-5-silent-reflux-lpr-asam-lambung-naik-tanpa-panas-di-dada-serangnya-ke.jpg" alt="Ilustrasi medis 3D anatomi kerongkongan hingga pita suara menunjukkan uap asam lambung naik mengiritasi tenggorokan tanpa membakar dada (LPR) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #5</span>
+        <h2>5. Silent Reflux (LPR): Asam Lambung Naik Tanpa Panas di Dada, Serangnya ke Tenggorokan</h2>
+        <p>Silent Reflux (LPR): Sering mendehem setiap pagi, suara tiba-tiba serak, tenggorokan terasa seperti ada lendir atau sesuatu yang mengganjal, tapi dadamu...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-06-6-gastroparesis-saat-otot-lambung-bekerja-melambat-dan-makanan-tertaha.html">
+      <img src="images/artikel-06-6-gastroparesis-saat-otot-lambung-bekerja-melambat-dan-makanan-tertaha.jpg" alt="Ilustrasi medis 3D lambung menunjukkan isi makanan tertahan di kantong bawah akibat pengosongan lambung yang melambat (Gastroparesis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #6</span>
+        <h2>6. Gastroparesis: Saat Otot Lambung Bekerja Melambat dan Makanan Tertahan Berjam-jam</h2>
+        <p>Gastroparesis: Makan siang jam 12, tapi sampai jam 5 sore perut masih terasa penuh sekali seolah makanannya belum turun sama sekali?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-07-7-gerd-anxiety-kenapa-pikiran-stres-bisa-bikin-lambung-bergejolak-dan-.html">
+      <img src="images/artikel-07-7-gerd-anxiety-kenapa-pikiran-stres-bisa-bikin-lambung-bergejolak-dan-.jpg" alt="Ilustrasi medis 3D siluet anatomi otak dan lambung terhubung jalur saraf vagus menyala yang menggambarkan GERD Anxiety — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #7</span>
+        <h2>7. GERD Anxiety: Kenapa Pikiran Stres Bisa Bikin Lambung Bergejolak dan Jantung Berdebar</h2>
+        <p>GERD Anxiety: Begitu stres kerja menumpuk atau kurang tidur, perut langsung perih, dada sesak, lalu muncul panik karena takut terjadi sesuatu pada jantung?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-08-8-hernia-hiatus-ketika-bagian-atas-lambung-ikut-terdorong-naik-menembu.html">
+      <img src="images/artikel-08-8-hernia-hiatus-ketika-bagian-atas-lambung-ikut-terdorong-naik-menembu.jpg" alt="Ilustrasi medis 3D cross-section menunjukkan sebagian puncak lambung terdorong naik melewati celah otot diafragma ke rongga dada (Hernia Hiatus) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #8</span>
+        <h2>8. Hernia Hiatus: Ketika Bagian Atas Lambung Ikut Terdorong Naik Menembus Diafragma</h2>
+        <p>Hernia Hiatus: Sudah menjaga makan dan minum obat rutin, tapi asam lambung tetap mudah naik setiap kali membungkuk atau berbaring telentang?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-09-9-refluks-empedu-kenapa-rasa-pahit-dan-perihmu-tidak-mempan-obat-asam-.html">
+      <img src="images/artikel-09-9-refluks-empedu-kenapa-rasa-pahit-dan-perihmu-tidak-mempan-obat-asam-.jpg" alt="Ilustrasi medis 3D menunjukkan cairan empedu kuning-kehijauan mengalir balik naik dari duodenum melewati katup pilorus ke dalam lambung (Refluks Empedu) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #9</span>
+        <h2>9. Refluks Empedu: Kenapa Rasa Pahit dan Perihmu Tidak Mempan Obat Asam Lambung Biasa</h2>
+        <p>Refluks Empedu: Sudah minum obat penekan asam lambung sesuai anjuran, tapi perut atas masih terasa panas dan mulut sering merasakan cairan pahit berwarn...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-10-10-red-flags-lambung-5-tanda-bahaya-yang-tidak-boleh-lagi-ditunda-deng.html">
+      <img src="images/artikel-10-10-red-flags-lambung-5-tanda-bahaya-yang-tidak-boleh-lagi-ditunda-deng.jpg" alt="Ilustrasi medis 3D lambung dengan sorotan area mukosa dan tiga ikon tanda peringatan klinis (Red Flags Penyakit Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #10</span>
+        <h2>10. Red Flags Lambung: 5 Tanda Bahaya yang Tidak Boleh Lagi Ditunda dengan Obat Warung</h2>
+        <p>Sebagian besar keluhan lambung memang bisa mereda dengan perbaikan pola makan dan obat yang tepat. Namun, mengandalkan obat penahan perih berbulan-bulan...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-11-kunyit-kurkumin-untuk-asam-lambung-gastritis-cara-kerja-dosis-aman.html">
+      <img src="images/artikel-11-kunyit-kurkumin-untuk-asam-lambung-gastritis-cara-kerja-dosis-aman.jpg" alt="Infografis edukasi herbal kunyit dan kurkumin untuk meredakan peradangan mukosa gastritis dan asam lambung dengan aturan dosis aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #11</span>
+        <h2>Kunyit (Kurkumin) untuk Asam Lambung &amp; Gastritis: Cara Kerja &amp; Dosis Aman</h2>
+        <p>Kunyit untuk Asam Lambung: Kenapa rimpang kuning ini jadi herbal paling banyak diteliti untuk meredakan gastritis dan perih ulu hati?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-12-temulawak-untuk-pemulihan-mukosa-lambung-refluks-empedu-bedanya-dengan.html">
+      <img src="images/artikel-12-temulawak-untuk-pemulihan-mukosa-lambung-refluks-empedu-bedanya-dengan.jpg" alt="Infografis medis herbal temulawak (Curcuma xanthorrhiza) untuk pemulihan mukosa lambung, kesehatan hati, dan keluhan refluks empedu — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #12</span>
+        <h2>Temulawak untuk Pemulihan Mukosa Lambung &amp; Refluks Empedu: Bedanya dengan Kunyit</h2>
+        <p>Temulawak untuk Lambung: Sering dianggap sama persis dengan kunyit, padahal temulawak punya keunggulan khusus untuk pemulihan mukosa lambung dan keluhan...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-13-pati-garut-irut-pelapis-alami-dinding-lambung-perih-tukak-lambung.html">
+      <img src="images/artikel-13-pati-garut-irut-pelapis-alami-dinding-lambung-perih-tukak-lambung.jpg" alt="Infografis edukasi pati garut atau irut sebagai pelapis alami dinding lambung perih dan makanan aman untuk tukak lambung — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #13</span>
+        <h2>Pati Garut (Irut) — Pelapis Alami Dinding Lambung Perih &amp; Tukak Lambung</h2>
+        <p>Pati Garut (Irut): Kenapa bubur umbi tradisional ini sering jadi penyelamat pertama saat ulu hati perih melilit atau tukak lambung kambuh?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-14-lidah-buaya-aloe-vera-untuk-meredakan-dada-panas-gerd-cara-olah-aman.html">
+      <img src="images/artikel-14-lidah-buaya-aloe-vera-untuk-meredakan-dada-panas-gerd-cara-olah-aman.jpg" alt="Infografis edukasi cara mengolah gel lidah buaya (Aloe vera) bebas getah kuning untuk meredakan sensasi dada panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #14</span>
+        <h2>Lidah Buaya (Aloe Vera) untuk Meredakan Dada Panas GERD: Cara Olah Aman</h2>
+        <p>Lidah Buaya untuk GERD: Gel bening Aloe vera dikenal mampu menyejukkan iritasi kerongkongan dan dada panas, TAPI banyak orang justru mulas karena salah ...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-15-madu-murni-habbatussauda-untuk-luka-lambung-h-pylori-cara-konsumsi-ben.html">
+      <img src="images/artikel-15-madu-murni-habbatussauda-untuk-luka-lambung-h-pylori-cara-konsumsi-ben.jpg" alt="Infografis edukasi kombinasi madu murni dan habbatussauda (thymoquinone) untuk membantu meredakan luka lambung dan infeksi H. pylori — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #15</span>
+        <h2>Madu Murni &amp; Habbatussauda untuk Luka Lambung &amp; H. pylori: Cara Konsumsi Benar</h2>
+        <p>Madu Murni &amp; Habbatussauda: Kombinasi dua bahan alami ini sudah lama diteliti karena sifat antibakteri dan anti-radangnya yang mendukung pemulihan luka ...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-16-jahe-merah-untuk-lambung-kapan-aman-kapan-justru-memicu-dada-panas.html">
+      <img src="images/artikel-16-jahe-merah-untuk-lambung-kapan-aman-kapan-justru-memicu-dada-panas.jpg" alt="Infografis edukasi jahe merah untuk asam lambung menjelaskan kapan jahe aman untuk mual dan kapan dosis pekat memicu panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #16</span>
+        <h2>Jahe Merah untuk Lambung: Kapan Aman &amp; Kapan Justru Memicu Dada Panas?</h2>
+        <p>Jahe Merah untuk Lambung: Ada yang langsung lega setelah minum wedang jahe, tapi ada juga penderita GERD yang dadanya malah terasa makin panas. Kenapa b...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-17-gamat-teripang-emas-kolagen-alami-untuk-regenerasi-luka-dinding-lambun.html">
+      <img src="images/artikel-17-gamat-teripang-emas-kolagen-alami-untuk-regenerasi-luka-dinding-lambun.jpg" alt="Infografis edukasi gamat atau teripang emas dan kolagen alami untuk membantu regenerasi mukosa tukak lambung dan gastritis erosif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #17</span>
+        <h2>Gamat (Teripang Emas) &amp; Kolagen Alami untuk Regenerasi Luka Dinding Lambung</h2>
+        <p>Gamat (Teripang Emas): Mengapa ekstrak biota laut ini populer sebagai pendamping pemulihan luka dinding lambung dan gastritis erosif?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-18-akar-manis-licorice-dgl-vs-daun-peppermint-untuk-gerd-mitos-vs-fakta.html">
+      <img src="images/artikel-18-akar-manis-licorice-dgl-vs-daun-peppermint-untuk-gerd-mitos-vs-fakta.jpg" alt="Infografis perbandingan fakta medis akar manis (Licorice DGL) versus daun peppermint terhadap katup LES pada penderita GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #18</span>
+        <h2>Akar Manis (Licorice / DGL) vs Daun Peppermint untuk GERD: Mitos vs Fakta</h2>
+        <p>Akar Manis vs Daun Peppermint: Banyak penderita GERD minum teh peppermint supaya perut terasa adem, tapi 30 menit kemudian dada malah terasa makin panas...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-19-daftar-makanan-aman-vs-pantangan-wajib-penderita-gerd-maag-kronis.html">
+      <img src="images/artikel-19-daftar-makanan-aman-vs-pantangan-wajib-penderita-gerd-maag-kronis.jpg" alt="Tabel perbandingan makanan aman versus pantangan wajib bagi penderita GERD dan maag kronis agar asam lambung tidak kambuh — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #19</span>
+        <h2>Daftar Makanan Aman vs Pantangan Wajib Penderita GERD &amp; Maag Kronis</h2>
+        <p>Makanan Aman vs Pantangan GERD: Obat dan herbal sebagus apa pun akan bekerja setengah hati kalau setiap hari lambung masih digempur makanan pemicu asam ...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-20-posisi-tidur-sunnah-untuk-asam-lambung-hikmah-miring-kanan-3-adab-anti.html">
+      <img src="images/artikel-20-posisi-tidur-sunnah-untuk-asam-lambung-hikmah-miring-kanan-3-adab-anti.jpg" alt="Infografis edukasi posisi tidur sunnah miring kanan sesuai hadits Rasulullah untuk penderita asam lambung GERD dengan elevasi kepala 15 sampai 20 cm — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #20</span>
+        <h2>Posisi Tidur Sunnah untuk Asam Lambung: Hikmah Miring Kanan &amp; 3 Adab Anti-Refluks</h2>
+        <p>Posisi Tidur Sunnah untuk Asam Lambung: Bagaimana menyelaraskan tuntunan tidur miring kanan sesuai Hadits Rasulullah ﷺ dengan kesehatan lambung agar beb...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-21-menu-sarapan-jadwal-makan-ideal-untuk-lambung-sensitif-pola-porsi-keci.html">
+      <img src="images/artikel-21-menu-sarapan-jadwal-makan-ideal-untuk-lambung-sensitif-pola-porsi-keci.jpg" alt="Infografis jadwal makan dan menu sarapan ideal pola porsi kecil sering untuk penderita maag kronis dan lambung sensitif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #21</span>
+        <h2>Menu Sarapan &amp; Jadwal Makan Ideal untuk Lambung Sensitif (Pola Porsi Kecil Sering)</h2>
+        <p>Menu Sarapan &amp; Jadwal Makan Lambung Sensitif: Lambung bermasalah membenci dua kondisi ekstrem — **terlalu lama kosong** dan **terlalu penuh mendadak**.</p>
+      </div>
+    </a>
+<a class="card" href="artikel-22-aturan-minum-kopi-teh-air-hangat-bagi-penderita-asam-lambung.html">
+      <img src="images/artikel-22-aturan-minum-kopi-teh-air-hangat-bagi-penderita-asam-lambung.jpg" alt="Infografis panduan aturan minum kopi, teh, dan air hangat yang aman bagi penderita asam lambung dan GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #22</span>
+        <h2>Aturan Minum Kopi, Teh &amp; Air Hangat bagi Penderita Asam Lambung</h2>
+        <p>Aturan Minum Kopi Asam Lambung: Wajibkah penderita maag dan GERD berhenti minum kopi seumur hidup?</p>
+      </div>
+    </a>
+<a class="card" href="artikel-23-beda-maag-biasa-vs-gerd-vs-tukak-lambung-tabel-perbandingan-gejala-len.html">
+      <img src="images/artikel-23-beda-maag-biasa-vs-gerd-vs-tukak-lambung-tabel-perbandingan-gejala-len.jpg" alt="Tabel perbandingan lengkap perbedaan gejala maag biasa, GERD, dan tukak lambung berdasarkan lokasi nyeri dan penyebabnya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #23</span>
+        <h2>Beda Maag Biasa vs GERD vs Tukak Lambung: Tabel Perbandingan Gejala Lengkap</h2>
+        <p>Beda Maag Biasa vs GERD vs Tukak Lambung: Di Indonesia semua nyeri perut atas sering dipukul rata jadi &quot;sakit maag&quot;. Padahal penanganan ketiganya berbeda!</p>
+      </div>
+    </a>
+<a class="card" href="artikel-24-kenapa-asam-lambung-sering-kambuh-malam-hari-subuh-4-langkah-pencegaha.html">
+      <img src="images/artikel-24-kenapa-asam-lambung-sering-kambuh-malam-hari-subuh-4-langkah-pencegaha.jpg" alt="Infografis penjelasan medis mengapa asam lambung GERD sering kambuh di malam hari dan subuh beserta 4 langkah pencegahannya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #24</span>
+        <h2>Kenapa Asam Lambung Sering Kambuh Malam Hari &amp; Subuh? 4 Langkah Pencegahannya</h2>
+        <p>Kenapa Asam Lambung Sering Kambuh Malam Hari &amp; Subuh? Padahal siangnya terasa baik-baik saja, begitu tengah malam dada tiba-tiba sesak, panas, atau terb...</p>
+      </div>
+    </a>
+<a class="card" href="artikel-25-faq-herbal-lambung-bolehkah-minum-herbal-bersamaan-dengan-obat-dokter-.html">
+      <img src="images/artikel-25-faq-herbal-lambung-bolehkah-minum-herbal-bersamaan-dengan-obat-dokter-.jpg" alt="Infografis FAQ edukasi keamanan minum ramuan herbal lambung bersamaan dengan obat dokter PPI atau antasida dengan aturan jeda waktu 2 jam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="card-body">
+        <span class="badge">Seri Lambung #25</span>
+        <h2>FAQ Herbal Lambung: Bolehkah Minum Herbal Bersamaan dengan Obat Dokter (PPI/Antasida)?</h2>
+        <p>Bolehkah Minum Herbal Bersamaan dengan Obat Dokter? Ini pertanyaan paling sering masuk ke konsultasi Ainu Herbal — dan jawabannya wajib dipahami dengan ...</p>
+      </div>
+    </a>
+    </section>
+  </main>
+  <footer>
+    &copy; 2026 <strong>Ainu Herbal</strong> — Solusi Pengobatan Herbal Alami • WA: 0852-8674-7289
+  </footer>
+</body>
+</html>
