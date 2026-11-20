@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://gcmaniac.github.io/ainu-herbal-edukasi/sitemap.xml
+Sitemap: https://ainuherbal.netlify.app/sitemap.xml
