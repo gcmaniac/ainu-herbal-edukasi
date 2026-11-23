@@ -23,12 +23,40 @@
   --card: #ffffff;
 }
 * { box-sizing: border-box; }
+html, body {
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--cream);
   color: var(--ink);
   line-height: 1.7;
+  -webkit-tap-highlight-color: rgba(15, 81, 50, 0.15);
+}
+h1, h2, h3, [id] { scroll-margin-top: 24px; }
+h1, h2 { text-wrap: balance; }
+p { text-wrap: pretty; }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: #fff;
+  color: var(--emerald);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 1000;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 12px;
+  outline: 3px solid #d4af37;
+}
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 header.site-header {
   background: var(--emerald);
@@ -53,6 +81,8 @@ header.site-header {
   text-decoration: none;
   font-weight: 700;
   font-size: 1.15rem;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 .brand img {
   width: 44px;
@@ -61,14 +91,24 @@ header.site-header {
   object-fit: cover;
   border: 2px solid #d4af37;
 }
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 .nav-links a {
   color: #e9f5ee;
   text-decoration: none;
-  margin-left: 16px;
+  padding: 10px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.95rem;
   font-weight: 500;
+  border-radius: 8px;
+  touch-action: manipulation;
 }
-.nav-links a:hover { text-decoration: underline; }
+.nav-links a:hover { text-decoration: underline; background: rgba(255, 255, 255, 0.08); }
 main {
   max-width: 960px;
   margin: 28px auto;
@@ -104,18 +144,22 @@ main {
 }
 .card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   background: #edf3ef;
 }
 .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.75rem;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--emerald);
   background: #e3f3ea;
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   margin-bottom: 8px;
   width: fit-content;
@@ -129,14 +173,20 @@ article.post {
   padding: 28px;
 }
 article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line-height: 1.25; }
-.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; font-variant-numeric: tabular-nums; }
 .featured-img {
   width: 100%;
+  height: auto;
   max-width: 560px;
   display: block;
   margin: 0 auto 24px;
   border-radius: 12px;
   border: 1px solid var(--border);
+}
+.inline-icon {
+  display: inline-block;
+  vertical-align: -4px;
+  flex-shrink: 0;
 }
 .cta-box {
   background: #eaf6ef;
@@ -146,16 +196,20 @@ article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line
   margin: 28px 0;
 }
 .cta-btn {
-  display: inline-block;
-  background: var(--emerald-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  background: var(--emerald);
   color: #fff;
   text-decoration: none;
   font-weight: 700;
   padding: 11px 20px;
   border-radius: 8px;
   margin-top: 10px;
+  touch-action: manipulation;
 }
-.cta-btn:hover { background: var(--emerald); }
+.cta-btn:hover { background: var(--emerald-light); }
 .disclaimer {
   font-size: 0.85rem;
   color: var(--muted);
@@ -173,8 +227,19 @@ article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line
 .related h2 { font-size: 1.2rem; color: var(--emerald); margin-top: 0; }
 .related ul { columns: 2; padding-left: 18px; }
 @media (max-width: 640px) { .related ul { columns: 1; } }
-.related a { color: var(--emerald); text-decoration: none; }
+.related a {
+  color: var(--emerald);
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 0;
+  min-height: 44px;
+  touch-action: manipulation;
+}
 .related a:hover { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
 footer {
   text-align: center;
   padding: 24px 20px;
@@ -187,13 +252,14 @@ footer {
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Ainu Herbal", "description": "Solusi Pengobatan Herbal Alami & Edukasi Kesehatan Penyakit untuk Ikhtiar Sehat Alami dari Akarnya.", "url": "https://ainuherbal.netlify.app", "logo": "https://ainuherbal.netlify.app/images/ainu-herbal-logo.jpg", "sameAs": ["https://www.instagram.com/ainuherbal/", "https://www.facebook.com/1533000039886265"], "contactPoint": {"@type": "ContactPoint", "telephone": "+62-852-8674-7289", "contactType": "customer service", "availableLanguage": "Indonesian"}}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">
-        <img src="images/ainu-herbal-logo.jpg" alt="Logo Ainu Herbal">
+        <img src="images/ainu-herbal-logo.jpg" alt="Logo Ainu Herbal" width="44" height="44">
         <span>Ainu Herbal</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Navigasi utama">
         <a href="index.html">Beranda</a>
         <a href="https://www.instagram.com/ainuherbal/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/1533000039886265" target="_blank" rel="noopener">Facebook</a>
@@ -201,15 +267,15 @@ footer {
       </nav>
     </div>
   </header>
-  <main>
+  <main id="main-content">
     <section class="hero">
-      <h1>🌿 Ainu Herbal — Edukasi Kesehatan & Pengobatan Herbal Alami</h1>
+      <h1><img class="inline-icon" src="images/icons/leaf.svg" width="32" height="32" alt="" aria-hidden="true"> Ainu Herbal — Edukasi Kesehatan &amp; Pengobatan Herbal Alami</h1>
       <p>Kumpulan panduan kesehatan berbasis edukasi medis dan ikhtiar pengobatan herbal murni dari akarnya. Mulai dari gangguan lambung hingga berbagai keluhan kesehatan sehari-hari.</p>
-      <a class="cta-btn" href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener">📲 Konsultasi WA Resmi: 0852-8674-7289</a>
+      <a class="cta-btn" href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener"><img class="inline-icon" src="images/icons/phone-call.svg" width="20" height="20" alt="" aria-hidden="true"> Konsultasi WA Resmi: 0852-8674-7289</a>
     </section>
     <section style="margin-bottom:24px;">
-      <section style="margin-bottom:36px;"><h2 style="color:#0f5132;margin:0 0 14px;border-bottom:3px solid #d4af37;padding-bottom:8px;">🩸 Klaster #2: Edukasi Diabetes &amp; Gula Darah (25 Artikel)</h2><div class="grid"><a class="card" href="artikel-26-gejala-awal-diabetes-yang-sering-diabaikan-6-sinyal-tubuh-sebelum-terl.html">
-      <img src="images/artikel-26-gejala-awal-diabetes-yang-sering-diabaikan-6-sinyal-tubuh-sebelum-terl.jpg" alt="Infografis 6 gejala awal diabetes yang sering diabaikan seperti sering buang air kecil malam hari, haus terus, lemas, mata kabur, dan luka lama sembuh — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <section style="margin-bottom:36px;"><h2 style="color:#0f5132;margin:0 0 14px;border-bottom:3px solid #d4af37;padding-bottom:8px;font-variant-numeric:tabular-nums;"><img class="inline-icon" src="images/icons/heart-pulse.svg" width="24" height="24" alt="" aria-hidden="true"> Klaster #2: Edukasi Diabetes &amp; Gula Darah (25 Artikel)</h2><div class="grid"><a class="card" href="artikel-26-gejala-awal-diabetes-yang-sering-diabaikan-6-sinyal-tubuh-sebelum-terl.html">
+      <img src="images/artikel-26-gejala-awal-diabetes-yang-sering-diabaikan-6-sinyal-tubuh-sebelum-terl.jpg" alt="Infografis 6 gejala awal diabetes yang sering diabaikan seperti sering buang air kecil malam hari, haus terus, lemas, mata kabur, dan luka lama sembuh — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #26</span>
         <h2>Gejala Awal Diabetes yang Sering Diabaikan: 6 Sinyal Tubuh Sebelum Terlambat</h2>
@@ -217,7 +283,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-27-resistensi-insulin-kenapa-gula-darah-tinggi-padahal-sudah-kurangi-gula.html">
-      <img src="images/artikel-27-resistensi-insulin-kenapa-gula-darah-tinggi-padahal-sudah-kurangi-gula.jpg" alt="Ilustrasi diagram seluler mekanisme kunci insulin dan reseptor sel menjelaskan penyebab resistensi insulin meski sudah mengurangi konsumsi gula pasir — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-27-resistensi-insulin-kenapa-gula-darah-tinggi-padahal-sudah-kurangi-gula.jpg" alt="Ilustrasi diagram seluler mekanisme kunci insulin dan reseptor sel menjelaskan penyebab resistensi insulin meski sudah mengurangi konsumsi gula pasir — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #27</span>
         <h2>Resistensi Insulin: Kenapa Gula Darah Tinggi Padahal Sudah Kurangi Gula Pasir?</h2>
@@ -225,7 +291,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-28-prediabetes-fase-emas-yang-masih-bisa-kembali-normal-sebelum-jadi-diab.html">
-      <img src="images/artikel-28-prediabetes-fase-emas-yang-masih-bisa-kembali-normal-sebelum-jadi-diab.jpg" alt="Infografis spektrum angka batas normal, prediabetes (GDP 100 sampai 125 mg/dL, HbA1c 5.7 sampai 6.4 persen), dan diabetes lengkap dengan 4 langkah pemulihan alami — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-28-prediabetes-fase-emas-yang-masih-bisa-kembali-normal-sebelum-jadi-diab.jpg" alt="Infografis spektrum angka batas normal, prediabetes (GDP 100 sampai 125 mg/dL, HbA1c 5.7 sampai 6.4 persen), dan diabetes lengkap dengan 4 langkah pemulihan alami — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #28</span>
         <h2>Prediabetes: Fase Emas yang Masih Bisa Kembali Normal Sebelum Jadi Diabetes Tipe 2</h2>
@@ -233,7 +299,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-29-beda-cek-gula-darah-puasa-gdp-2-jam-pp-sewaktu-hba1c-mana-paling-akura.html">
-      <img src="images/artikel-29-beda-cek-gula-darah-puasa-gdp-2-jam-pp-sewaktu-hba1c-mana-paling-akura.jpg" alt="Infografis formulir hasil lab menjelaskan perbedaan pemeriksaan Gula Darah Puasa (GDP), GD2PP 2 jam setelah makan, GDS sewaktu, dan HbA1c rata-rata 3 bulan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-29-beda-cek-gula-darah-puasa-gdp-2-jam-pp-sewaktu-hba1c-mana-paling-akura.jpg" alt="Infografis formulir hasil lab menjelaskan perbedaan pemeriksaan Gula Darah Puasa (GDP), GD2PP 2 jam setelah makan, GDS sewaktu, dan HbA1c rata-rata 3 bulan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #29</span>
         <h2>Beda Cek Gula Darah Puasa (GDP), 2 Jam PP, Sewaktu &amp; HbA1c: Mana Paling Akurat?</h2>
@@ -241,7 +307,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-30-sering-mengantuk-berat-setelah-makan-nasi-waspada-lonjakan-gula-darah-.html">
-      <img src="images/artikel-30-sering-mengantuk-berat-setelah-makan-nasi-waspada-lonjakan-gula-darah-.jpg" alt="Grafik perbandingan kurva lonjakan gula darah tajam dan turun mendadak (glucose spike and crash) versus kurva stabil setelah makan berserat — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-30-sering-mengantuk-berat-setelah-makan-nasi-waspada-lonjakan-gula-darah-.jpg" alt="Grafik perbandingan kurva lonjakan gula darah tajam dan turun mendadak (glucose spike and crash) versus kurva stabil setelah makan berserat — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #30</span>
         <h2>Sering Mengantuk Berat Setelah Makan Nasi? Waspada Lonjakan Gula Darah (Glucose Spike)</h2>
@@ -249,7 +315,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-31-kenapa-penderita-diabetes-sering-kencing-malam-hari-nokturia-haus-teru.html">
-      <img src="images/artikel-31-kenapa-penderita-diabetes-sering-kencing-malam-hari-nokturia-haus-teru.jpg" alt="Diagram alur berantai cara kerja ginjal menarik cairan tubuh akibat glukosa darah di atas 180 mg/dL sehingga memicu sering kencing malam dan haus berlebihan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-31-kenapa-penderita-diabetes-sering-kencing-malam-hari-nokturia-haus-teru.jpg" alt="Diagram alur berantai cara kerja ginjal menarik cairan tubuh akibat glukosa darah di atas 180 mg/dL sehingga memicu sering kencing malam dan haus berlebihan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #31</span>
         <h2>Kenapa Penderita Diabetes Sering Kencing Malam Hari (Nokturia) &amp; Haus Terus?</h2>
@@ -257,7 +323,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-32-tangan-kaki-sering-kesemutan-kebas-atau-terasa-panas-kenali-neuropati-.html">
-      <img src="images/artikel-32-tangan-kaki-sering-kesemutan-kebas-atau-terasa-panas-kenali-neuropati-.jpg" alt="Infografis peringatan alarm saraf tepi neuropati diabetik menjelaskan gejala kesemutan, kebas, rasa terbakar, serta 4 kebiasaan wajib menjaga kaki setiap malam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-32-tangan-kaki-sering-kesemutan-kebas-atau-terasa-panas-kenali-neuropati-.jpg" alt="Infografis peringatan alarm saraf tepi neuropati diabetik menjelaskan gejala kesemutan, kebas, rasa terbakar, serta 4 kebiasaan wajib menjaga kaki setiap malam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #32</span>
         <h2>Tangan &amp; Kaki Sering Kesemutan, Kebas, atau Terasa Panas? Kenali Neuropati Diabetik</h2>
@@ -265,7 +331,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-33-kenapa-luka-kecil-di-kaki-penderita-diabetes-lama-sembuh-rawan-infeksi.html">
-      <img src="images/artikel-33-kenapa-luka-kecil-di-kaki-penderita-diabetes-lama-sembuh-rawan-infeksi.jpg" alt="Infografis 3 faktor biologis penyebab luka kaki penderita diabetes sulit sembuh yaitu sirkulasi darah terhambat, saraf mati rasa, dan penurunan daya imun — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-33-kenapa-luka-kecil-di-kaki-penderita-diabetes-lama-sembuh-rawan-infeksi.jpg" alt="Infografis 3 faktor biologis penyebab luka kaki penderita diabetes sulit sembuh yaitu sirkulasi darah terhambat, saraf mati rasa, dan penurunan daya imun — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #33</span>
         <h2>Kenapa Luka Kecil di Kaki Penderita Diabetes Lama Sembuh &amp; Rawan Infeksi?</h2>
@@ -273,7 +339,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-34-mitos-vs-fakta-benarkah-ada-diabetes-kering-dan-diabetes-basah.html">
-      <img src="images/artikel-34-mitos-vs-fakta-benarkah-ada-diabetes-kering-dan-diabetes-basah.jpg" alt="Poster edukasi meluruskan mitos populer di masyarakat tentang istilah diabetes kering dan diabetes basah serta bahaya komplikasi diam-diam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-34-mitos-vs-fakta-benarkah-ada-diabetes-kering-dan-diabetes-basah.jpg" alt="Poster edukasi meluruskan mitos populer di masyarakat tentang istilah diabetes kering dan diabetes basah serta bahaya komplikasi diam-diam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #34</span>
         <h2>Mitos vs Fakta: Benarkah Ada “Diabetes Kering” dan “Diabetes Basah”?</h2>
@@ -281,7 +347,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-35-red-flags-gula-darah-beda-darurat-gula-drop-hipoglikemia-vs-gula-melon.html">
-      <img src="images/artikel-35-red-flags-gula-darah-beda-darurat-gula-drop-hipoglikemia-vs-gula-melon.jpg" alt="Poster panduan gawat darurat rumah membedakan kondisi gula drop hipoglikemia di bawah 70 mg/dL dengan aturan 15-15 dan lonjakan ketoasidosis di atas 300 mg/dL yang wajib ke IGD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-35-red-flags-gula-darah-beda-darurat-gula-drop-hipoglikemia-vs-gula-melon.jpg" alt="Poster panduan gawat darurat rumah membedakan kondisi gula drop hipoglikemia di bawah 70 mg/dL dengan aturan 15-15 dan lonjakan ketoasidosis di atas 300 mg/dL yang wajib ke IGD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #35</span>
         <h2>Red Flags Gula Darah: Beda Darurat Gula Drop (Hipoglikemia) vs Gula Melonjak (Ketoasidosis)</h2>
@@ -289,7 +355,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.html">
-      <img src="images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg" alt="Infografis apotek herbal Habbatussauda (Nigella sativa) untuk membantu kontrol gula darah dan sensitivitas insulin berkat thymoquinone dengan takaran aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg" alt="Infografis apotek herbal Habbatussauda (Nigella sativa) untuk membantu kontrol gula darah dan sensitivitas insulin berkat thymoquinone dengan takaran aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #36</span>
         <h2>Habbatussauda untuk Diabetes &amp; Gula Darah: Manfaat Thymoquinone &amp; Takaran Aman</h2>
@@ -297,7 +363,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-37-kayu-manis-untuk-diabetes-pilih-ceylon-vs-cassia-waspada-kumarin-bagi-.html">
-      <img src="images/artikel-37-kayu-manis-untuk-diabetes-pilih-ceylon-vs-cassia-waspada-kumarin-bagi-.jpg" alt="Infografis perbandingan kayu manis Ceylon (true cinnamon rendah kumarin) versus Cassia untuk penderita diabetes agar aman bagi fungsi hati — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-37-kayu-manis-untuk-diabetes-pilih-ceylon-vs-cassia-waspada-kumarin-bagi-.jpg" alt="Infografis perbandingan kayu manis Ceylon (true cinnamon rendah kumarin) versus Cassia untuk penderita diabetes agar aman bagi fungsi hati — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #37</span>
         <h2>Kayu Manis untuk Diabetes: Pilih Ceylon vs Cassia (Waspada Kumarin bagi Hati!)</h2>
@@ -305,7 +371,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-38-sambiloto-andrographolide-penurun-gula-darah-manfaat-cara-minum-larang.html">
-      <img src="images/artikel-38-sambiloto-andrographolide-penurun-gula-darah-manfaat-cara-minum-larang.jpg" alt="Poster edukasi herbal Sambiloto (Andrographis paniculata) mengandung andrographolide untuk membantu kontrol gula darah beserta aturan dosis dan larangan bagi ibu hamil — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-38-sambiloto-andrographolide-penurun-gula-darah-manfaat-cara-minum-larang.jpg" alt="Poster edukasi herbal Sambiloto (Andrographis paniculata) mengandung andrographolide untuk membantu kontrol gula darah beserta aturan dosis dan larangan bagi ibu hamil — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #38</span>
         <h2>Sambiloto (Andrographolide) Penurun Gula Darah: Manfaat, Cara Minum &amp; Larangan Wajib</h2>
@@ -313,7 +379,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-39-daun-insulin-yakon-untuk-gula-darah-mekanisme-alami-aturan-rebusan-ama.html">
-      <img src="images/artikel-39-daun-insulin-yakon-untuk-gula-darah-mekanisme-alami-aturan-rebusan-ama.jpg" alt="Infografis bento modern tentang daun insulin atau yakon (Smallanthus sonchifolius) untuk membantu mengontrol lonjakan gula darah dan cara rebus yang aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-39-daun-insulin-yakon-untuk-gula-darah-mekanisme-alami-aturan-rebusan-ama.jpg" alt="Infografis bento modern tentang daun insulin atau yakon (Smallanthus sonchifolius) untuk membantu mengontrol lonjakan gula darah dan cara rebus yang aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #39</span>
         <h2>Daun Insulin (Yakon) untuk Gula Darah: Mekanisme Alami &amp; Aturan Rebusan Aman</h2>
@@ -321,7 +387,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-40-pare-momordica-charantia-untuk-diabetes-senyawa-charantin-peniru-kerja.html">
-      <img src="images/artikel-40-pare-momordica-charantia-untuk-diabetes-senyawa-charantin-peniru-kerja.jpg" alt="Diagram sains senyawa alami buah pare (Momordica charantia) yaitu charantin, polipeptida-p, dan vicine yang membantu penyerapan glukosa otot pada diabetes — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-40-pare-momordica-charantia-untuk-diabetes-senyawa-charantin-peniru-kerja.jpg" alt="Diagram sains senyawa alami buah pare (Momordica charantia) yaitu charantin, polipeptida-p, dan vicine yang membantu penyerapan glukosa otot pada diabetes — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #40</span>
         <h2>Pare (Momordica charantia) untuk Diabetes: Senyawa Charantin Peniru Kerja Insulin</h2>
@@ -329,7 +395,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-41-daun-kelor-moringa-untuk-gula-darah-antioksidan-pelindung-pembuluh-dar.html">
-      <img src="images/artikel-41-daun-kelor-moringa-untuk-gula-darah-antioksidan-pelindung-pembuluh-dar.jpg" alt="Infografis editorial daun kelor (Moringa oleifera) kaya flavonoid dan asam klorogenat untuk membantu menstabilkan gula darah dan melindungi pembuluh darah diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-41-daun-kelor-moringa-untuk-gula-darah-antioksidan-pelindung-pembuluh-dar.jpg" alt="Infografis editorial daun kelor (Moringa oleifera) kaya flavonoid dan asam klorogenat untuk membantu menstabilkan gula darah dan melindungi pembuluh darah diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #41</span>
         <h2>Daun Kelor (Moringa) untuk Gula Darah &amp; Antioksidan Pelindung Pembuluh Darah</h2>
@@ -337,7 +403,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-42-kunyit-kurkumin-untuk-resistensi-insulin-perlindungan-ginjal-diabetesi.html">
-      <img src="images/artikel-42-kunyit-kurkumin-untuk-resistensi-insulin-perlindungan-ginjal-diabetesi.jpg" alt="Infografis 3 manfaat utama kurkumin dari rimpang kunyit dalam meredakan radang resistensi insulin dan menjaga pembuluh darah halus ginjal diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-42-kunyit-kurkumin-untuk-resistensi-insulin-perlindungan-ginjal-diabetesi.jpg" alt="Infografis 3 manfaat utama kurkumin dari rimpang kunyit dalam meredakan radang resistensi insulin dan menjaga pembuluh darah halus ginjal diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #42</span>
         <h2>Kunyit (Kurkumin) untuk Resistensi Insulin &amp; Perlindungan Ginjal Diabetesi</h2>
@@ -345,7 +411,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-43-edukasi-jujur-madu-untuk-penderita-diabetes-kapan-boleh-kapan-harus-di.html">
-      <img src="images/artikel-43-edukasi-jujur-madu-untuk-penderita-diabetes-kapan-boleh-kapan-harus-di.jpg" alt="Kartu panduan jujur aturan konsumsi madu murni bagi penderita diabetes membedakan kondisi gula terkontrol, kondisi darurat hipoglikemia, dan saat gula darah tinggi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-43-edukasi-jujur-madu-untuk-penderita-diabetes-kapan-boleh-kapan-harus-di.jpg" alt="Kartu panduan jujur aturan konsumsi madu murni bagi penderita diabetes membedakan kondisi gula terkontrol, kondisi darurat hipoglikemia, dan saat gula darah tinggi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #43</span>
         <h2>Edukasi Jujur Madu untuk Penderita Diabetes: Kapan Boleh &amp; Kapan Harus Ditahan?</h2>
@@ -353,7 +419,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-44-urutan-makan-anti-spike-untuk-diabetesi-sayur-protein-karbohidrat-tera.html">
-      <img src="images/artikel-44-urutan-makan-anti-spike-untuk-diabetesi-sayur-protein-karbohidrat-tera.jpg" alt="Infografis Before dan After perubahan urutan makan anti-glucose spike bagi diabetesi dengan mendahulukan sayur berserat dan protein sebelum nasi putih — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-44-urutan-makan-anti-spike-untuk-diabetesi-sayur-protein-karbohidrat-tera.jpg" alt="Infografis Before dan After perubahan urutan makan anti-glucose spike bagi diabetesi dengan mendahulukan sayur berserat dan protein sebelum nasi putih — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #44</span>
         <h2>Urutan Makan Anti-Spike untuk Diabetesi: Sayur → Protein → Karbohidrat Terakhir</h2>
@@ -361,7 +427,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-45-indeks-glikemik-vs-beban-glikemik-panduan-cerdas-pilih-nasi-buah-lauk-.html">
-      <img src="images/artikel-45-indeks-glikemik-vs-beban-glikemik-panduan-cerdas-pilih-nasi-buah-lauk-.jpg" alt="Katalog 6 kelompok makanan Nusantara berdasarkan kategori Indeks Glikemik dan Beban Glikemik rendah sedang hingga tinggi sebagai panduan menu harian diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-45-indeks-glikemik-vs-beban-glikemik-panduan-cerdas-pilih-nasi-buah-lauk-.jpg" alt="Katalog 6 kelompok makanan Nusantara berdasarkan kategori Indeks Glikemik dan Beban Glikemik rendah sedang hingga tinggi sebagai panduan menu harian diabetesi — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #45</span>
         <h2>Indeks Glikemik vs Beban Glikemik: Panduan Cerdas Pilih Nasi, Buah &amp; Lauk Nusantara</h2>
@@ -369,7 +435,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-46-adab-makan-131313-puasa-sunnah-bagi-penderita-diabetes-panduan-syari-a.html">
-      <img src="images/artikel-46-adab-makan-131313-puasa-sunnah-bagi-penderita-diabetes-panduan-syari-a.jpg" alt="Diagram donat adab makan Rasulullah sepertiga makanan sepertiga minuman sepertiga napas serta panduan aman medis berpuasa sunnah bagi penderita diabetes — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-46-adab-makan-131313-puasa-sunnah-bagi-penderita-diabetes-panduan-syari-a.jpg" alt="Diagram donat adab makan Rasulullah sepertiga makanan sepertiga minuman sepertiga napas serta panduan aman medis berpuasa sunnah bagi penderita diabetes — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #46</span>
         <h2>Adab Makan 1/3–1/3–1/3 &amp; Puasa Sunnah bagi Penderita Diabetes: Panduan Syar&#x27;i &amp; Aman Medis</h2>
@@ -377,7 +443,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-47-rahasia-jalan-kaki-15-menit-usai-makan-otot-menyerap-gula-tanpa-bebani.html">
-      <img src="images/artikel-47-rahasia-jalan-kaki-15-menit-usai-makan-otot-menyerap-gula-tanpa-bebani.jpg" alt="Pelacak rutinitas harian kebiasaan jalan kaki santai 10 sampai 15 menit setelah sarapan, makan siang, dan makan malam untuk membantu otot menyerap glukosa alami — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-47-rahasia-jalan-kaki-15-menit-usai-makan-otot-menyerap-gula-tanpa-bebani.jpg" alt="Pelacak rutinitas harian kebiasaan jalan kaki santai 10 sampai 15 menit setelah sarapan, makan siang, dan makan malam untuk membantu otot menyerap glukosa alami — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #47</span>
         <h2>Rahasia Jalan Kaki 15 Menit Usai Makan: Otot Menyerap Gula Tanpa Bebani Pankreas</h2>
@@ -385,7 +451,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-48-faq-herbal-diabetes-aturan-jeda-2-jam-dengan-metformininsulin-bahaya-c.html">
-      <img src="images/artikel-48-faq-herbal-diabetes-aturan-jeda-2-jam-dengan-metformininsulin-bahaya-c.jpg" alt="Kartu tanya jawab klinis aturan jeda waktu 2 sampai 3 jam antara herbal dan obat dokter diabetes seperti metformin atau insulin serta bahaya mencampur banyak herbal sekaligus — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-48-faq-herbal-diabetes-aturan-jeda-2-jam-dengan-metformininsulin-bahaya-c.jpg" alt="Kartu tanya jawab klinis aturan jeda waktu 2 sampai 3 jam antara herbal dan obat dokter diabetes seperti metformin atau insulin serta bahaya mencampur banyak herbal sekaligus — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #48</span>
         <h2>FAQ Herbal Diabetes: Aturan Jeda 2 Jam dengan Metformin/Insulin &amp; Bahaya Campur Banyak Herbal</h2>
@@ -393,7 +459,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-49-bolehkah-berhenti-minum-obat-diabetes-sendiri-saat-gula-sudah-normal-i.html">
-      <img src="images/artikel-49-bolehkah-berhenti-minum-obat-diabetes-sendiri-saat-gula-sudah-normal-i.jpg" alt="Diagram alur keputusan medis menjelaskan mengapa pasien diabetes tidak boleh menghentikan obat dokter secara mendadak meski angka gula sudah normal — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-49-bolehkah-berhenti-minum-obat-diabetes-sendiri-saat-gula-sudah-normal-i.jpg" alt="Diagram alur keputusan medis menjelaskan mengapa pasien diabetes tidak boleh menghentikan obat dokter secara mendadak meski angka gula sudah normal — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #49</span>
         <h2>Bolehkah Berhenti Minum Obat Diabetes Sendiri Saat Gula Sudah Normal? Ini Jawabannya</h2>
@@ -401,15 +467,15 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-50-jadwal-wajib-cek-rutin-diabetesi-lindungi-mata-ginjal-jantung-saraf-ka.html">
-      <img src="images/artikel-50-jadwal-wajib-cek-rutin-diabetesi-lindungi-mata-ginjal-jantung-saraf-ka.jpg" alt="Kalender pemeriksaan rutin tahunan diabetesi mencakup cek gula dan kaki harian, cek HbA1c setiap 3 sampai 6 bulan, serta skrining mata, ginjal, kolesterol, dan jantung tahunan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-50-jadwal-wajib-cek-rutin-diabetesi-lindungi-mata-ginjal-jantung-saraf-ka.jpg" alt="Kalender pemeriksaan rutin tahunan diabetesi mencakup cek gula dan kaki harian, cek HbA1c setiap 3 sampai 6 bulan, serta skrining mata, ginjal, kolesterol, dan jantung tahunan — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Diabetes #50</span>
         <h2>Jadwal Wajib Cek Rutin Diabetesi: Lindungi Mata, Ginjal, Jantung &amp; Saraf Kaki Sejak Dini</h2>
         <p>Jadwal Wajib Cek Rutin Diabetesi: Kunci hidup sehat dan panjang umur produktif bersama diabetes bukan hanya mengecek gula stik di jari — tetapi mencegah...</p>
       </div>
     </a></div></section>
-<section style="margin-bottom:24px;"><h2 style="color:#0f5132;margin:0 0 14px;border-bottom:3px solid #198754;padding-bottom:8px;">🌿 Klaster #1: Edukasi Kesehatan Lambung Tuntas (25 Artikel)</h2><div class="grid"><a class="card" href="artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.html">
-      <img src="images/artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.jpg" alt="Ilustrasi medis 3D cross-section lambung dan kerongkongan menunjukkan katup LES melemah dan cairan asam lambung naik ke dada (GERD) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+<section style="margin-bottom:24px;"><h2 style="color:#0f5132;margin:0 0 14px;border-bottom:3px solid #198754;padding-bottom:8px;font-variant-numeric:tabular-nums;"><img class="inline-icon" src="images/icons/leaf.svg" width="24" height="24" alt="" aria-hidden="true"> Klaster #1: Edukasi Kesehatan Lambung Tuntas (25 Artikel)</h2><div class="grid"><a class="card" href="artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.html">
+      <img src="images/artikel-01-1-gerd-bukan-sekadar-maag-ini-masalah-katup-lambung-yang-longgar.jpg" alt="Ilustrasi medis 3D cross-section lambung dan kerongkongan menunjukkan katup LES melemah dan cairan asam lambung naik ke dada (GERD) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #1</span>
         <h2>1. GERD: Bukan Sekadar Maag, Ini Masalah Katup Lambung yang Longgar</h2>
@@ -417,7 +483,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-02-2-gastritis-kenapa-ulu-hati-terasa-perih-seperti-diiris-saat-perut-kos.html">
-      <img src="images/artikel-02-2-gastritis-kenapa-ulu-hati-terasa-perih-seperti-diiris-saat-perut-kos.jpg" alt="Ilustrasi medis 3D cross-section lambung menunjukkan peradangan merah merata pada lipatan dinding mukosa lambung (Gastritis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-02-2-gastritis-kenapa-ulu-hati-terasa-perih-seperti-diiris-saat-perut-kos.jpg" alt="Ilustrasi medis 3D cross-section lambung menunjukkan peradangan merah merata pada lipatan dinding mukosa lambung (Gastritis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #2</span>
         <h2>2. Gastritis: Kenapa Ulu Hati Terasa Perih Seperti Diiris saat Perut Kosong</h2>
@@ -425,7 +491,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-03-3-tukak-lambung-saat-radang-biasa-sudah-berubah-jadi-luka-terbuka.html">
-      <img src="images/artikel-03-3-tukak-lambung-saat-radang-biasa-sudah-berubah-jadi-luka-terbuka.jpg" alt="Ilustrasi medis 3D lambung dengan kaca pembesar menyoroti erosi luka cekung pada lapisan mukosa lambung (Tukak Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-03-3-tukak-lambung-saat-radang-biasa-sudah-berubah-jadi-luka-terbuka.jpg" alt="Ilustrasi medis 3D lambung dengan kaca pembesar menyoroti erosi luka cekung pada lapisan mukosa lambung (Tukak Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #3</span>
         <h2>3. Tukak Lambung: Saat Radang Biasa Sudah Berubah Jadi Luka Terbuka</h2>
@@ -433,7 +499,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-04-4-dispepsia-fungsional-hasil-endoskopi-normal-tapi-perut-selalu-begah-.html">
-      <img src="images/artikel-04-4-dispepsia-fungsional-hasil-endoskopi-normal-tapi-perut-selalu-begah-.jpg" alt="Ilustrasi medis 3D lambung dengan dinding mukosa bersih sehat dikelilingi serabut saraf hipersensitif menyala (Dispepsia Fungsional) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-04-4-dispepsia-fungsional-hasil-endoskopi-normal-tapi-perut-selalu-begah-.jpg" alt="Ilustrasi medis 3D lambung dengan dinding mukosa bersih sehat dikelilingi serabut saraf hipersensitif menyala (Dispepsia Fungsional) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #4</span>
         <h2>4. Dispepsia Fungsional: Hasil Endoskopi Normal, Tapi Perut Selalu Begah dan Perih</h2>
@@ -441,7 +507,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-05-5-silent-reflux-lpr-asam-lambung-naik-tanpa-panas-di-dada-serangnya-ke.html">
-      <img src="images/artikel-05-5-silent-reflux-lpr-asam-lambung-naik-tanpa-panas-di-dada-serangnya-ke.jpg" alt="Ilustrasi medis 3D anatomi kerongkongan hingga pita suara menunjukkan uap asam lambung naik mengiritasi tenggorokan tanpa membakar dada (LPR) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-05-5-silent-reflux-lpr-asam-lambung-naik-tanpa-panas-di-dada-serangnya-ke.jpg" alt="Ilustrasi medis 3D anatomi kerongkongan hingga pita suara menunjukkan uap asam lambung naik mengiritasi tenggorokan tanpa membakar dada (LPR) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #5</span>
         <h2>5. Silent Reflux (LPR): Asam Lambung Naik Tanpa Panas di Dada, Serangnya ke Tenggorokan</h2>
@@ -449,7 +515,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-06-6-gastroparesis-saat-otot-lambung-bekerja-melambat-dan-makanan-tertaha.html">
-      <img src="images/artikel-06-6-gastroparesis-saat-otot-lambung-bekerja-melambat-dan-makanan-tertaha.jpg" alt="Ilustrasi medis 3D lambung menunjukkan isi makanan tertahan di kantong bawah akibat pengosongan lambung yang melambat (Gastroparesis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-06-6-gastroparesis-saat-otot-lambung-bekerja-melambat-dan-makanan-tertaha.jpg" alt="Ilustrasi medis 3D lambung menunjukkan isi makanan tertahan di kantong bawah akibat pengosongan lambung yang melambat (Gastroparesis) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #6</span>
         <h2>6. Gastroparesis: Saat Otot Lambung Bekerja Melambat dan Makanan Tertahan Berjam-jam</h2>
@@ -457,7 +523,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-07-7-gerd-anxiety-kenapa-pikiran-stres-bisa-bikin-lambung-bergejolak-dan-.html">
-      <img src="images/artikel-07-7-gerd-anxiety-kenapa-pikiran-stres-bisa-bikin-lambung-bergejolak-dan-.jpg" alt="Ilustrasi medis 3D siluet anatomi otak dan lambung terhubung jalur saraf vagus menyala yang menggambarkan GERD Anxiety — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-07-7-gerd-anxiety-kenapa-pikiran-stres-bisa-bikin-lambung-bergejolak-dan-.jpg" alt="Ilustrasi medis 3D siluet anatomi otak dan lambung terhubung jalur saraf vagus menyala yang menggambarkan GERD Anxiety — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #7</span>
         <h2>7. GERD Anxiety: Kenapa Pikiran Stres Bisa Bikin Lambung Bergejolak dan Jantung Berdebar</h2>
@@ -465,7 +531,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-08-8-hernia-hiatus-ketika-bagian-atas-lambung-ikut-terdorong-naik-menembu.html">
-      <img src="images/artikel-08-8-hernia-hiatus-ketika-bagian-atas-lambung-ikut-terdorong-naik-menembu.jpg" alt="Ilustrasi medis 3D cross-section menunjukkan sebagian puncak lambung terdorong naik melewati celah otot diafragma ke rongga dada (Hernia Hiatus) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-08-8-hernia-hiatus-ketika-bagian-atas-lambung-ikut-terdorong-naik-menembu.jpg" alt="Ilustrasi medis 3D cross-section menunjukkan sebagian puncak lambung terdorong naik melewati celah otot diafragma ke rongga dada (Hernia Hiatus) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #8</span>
         <h2>8. Hernia Hiatus: Ketika Bagian Atas Lambung Ikut Terdorong Naik Menembus Diafragma</h2>
@@ -473,7 +539,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-09-9-refluks-empedu-kenapa-rasa-pahit-dan-perihmu-tidak-mempan-obat-asam-.html">
-      <img src="images/artikel-09-9-refluks-empedu-kenapa-rasa-pahit-dan-perihmu-tidak-mempan-obat-asam-.jpg" alt="Ilustrasi medis 3D menunjukkan cairan empedu kuning-kehijauan mengalir balik naik dari duodenum melewati katup pilorus ke dalam lambung (Refluks Empedu) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-09-9-refluks-empedu-kenapa-rasa-pahit-dan-perihmu-tidak-mempan-obat-asam-.jpg" alt="Ilustrasi medis 3D menunjukkan cairan empedu kuning-kehijauan mengalir balik naik dari duodenum melewati katup pilorus ke dalam lambung (Refluks Empedu) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #9</span>
         <h2>9. Refluks Empedu: Kenapa Rasa Pahit dan Perihmu Tidak Mempan Obat Asam Lambung Biasa</h2>
@@ -481,7 +547,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-10-10-red-flags-lambung-5-tanda-bahaya-yang-tidak-boleh-lagi-ditunda-deng.html">
-      <img src="images/artikel-10-10-red-flags-lambung-5-tanda-bahaya-yang-tidak-boleh-lagi-ditunda-deng.jpg" alt="Ilustrasi medis 3D lambung dengan sorotan area mukosa dan tiga ikon tanda peringatan klinis (Red Flags Penyakit Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-10-10-red-flags-lambung-5-tanda-bahaya-yang-tidak-boleh-lagi-ditunda-deng.jpg" alt="Ilustrasi medis 3D lambung dengan sorotan area mukosa dan tiga ikon tanda peringatan klinis (Red Flags Penyakit Lambung) — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #10</span>
         <h2>10. Red Flags Lambung: 5 Tanda Bahaya yang Tidak Boleh Lagi Ditunda dengan Obat Warung</h2>
@@ -489,7 +555,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-11-kunyit-kurkumin-untuk-asam-lambung-gastritis-cara-kerja-dosis-aman.html">
-      <img src="images/artikel-11-kunyit-kurkumin-untuk-asam-lambung-gastritis-cara-kerja-dosis-aman.jpg" alt="Infografis edukasi herbal kunyit dan kurkumin untuk meredakan peradangan mukosa gastritis dan asam lambung dengan aturan dosis aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-11-kunyit-kurkumin-untuk-asam-lambung-gastritis-cara-kerja-dosis-aman.jpg" alt="Infografis edukasi herbal kunyit dan kurkumin untuk meredakan peradangan mukosa gastritis dan asam lambung dengan aturan dosis aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #11</span>
         <h2>Kunyit (Kurkumin) untuk Asam Lambung &amp; Gastritis: Cara Kerja &amp; Dosis Aman</h2>
@@ -497,7 +563,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-12-temulawak-untuk-pemulihan-mukosa-lambung-refluks-empedu-bedanya-dengan.html">
-      <img src="images/artikel-12-temulawak-untuk-pemulihan-mukosa-lambung-refluks-empedu-bedanya-dengan.jpg" alt="Infografis medis herbal temulawak (Curcuma xanthorrhiza) untuk pemulihan mukosa lambung, kesehatan hati, dan keluhan refluks empedu — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-12-temulawak-untuk-pemulihan-mukosa-lambung-refluks-empedu-bedanya-dengan.jpg" alt="Infografis medis herbal temulawak (Curcuma xanthorrhiza) untuk pemulihan mukosa lambung, kesehatan hati, dan keluhan refluks empedu — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #12</span>
         <h2>Temulawak untuk Pemulihan Mukosa Lambung &amp; Refluks Empedu: Bedanya dengan Kunyit</h2>
@@ -505,7 +571,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-13-pati-garut-irut-pelapis-alami-dinding-lambung-perih-tukak-lambung.html">
-      <img src="images/artikel-13-pati-garut-irut-pelapis-alami-dinding-lambung-perih-tukak-lambung.jpg" alt="Infografis edukasi pati garut atau irut sebagai pelapis alami dinding lambung perih dan makanan aman untuk tukak lambung — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-13-pati-garut-irut-pelapis-alami-dinding-lambung-perih-tukak-lambung.jpg" alt="Infografis edukasi pati garut atau irut sebagai pelapis alami dinding lambung perih dan makanan aman untuk tukak lambung — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #13</span>
         <h2>Pati Garut (Irut) — Pelapis Alami Dinding Lambung Perih &amp; Tukak Lambung</h2>
@@ -513,7 +579,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-14-lidah-buaya-aloe-vera-untuk-meredakan-dada-panas-gerd-cara-olah-aman.html">
-      <img src="images/artikel-14-lidah-buaya-aloe-vera-untuk-meredakan-dada-panas-gerd-cara-olah-aman.jpg" alt="Infografis edukasi cara mengolah gel lidah buaya (Aloe vera) bebas getah kuning untuk meredakan sensasi dada panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-14-lidah-buaya-aloe-vera-untuk-meredakan-dada-panas-gerd-cara-olah-aman.jpg" alt="Infografis edukasi cara mengolah gel lidah buaya (Aloe vera) bebas getah kuning untuk meredakan sensasi dada panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #14</span>
         <h2>Lidah Buaya (Aloe Vera) untuk Meredakan Dada Panas GERD: Cara Olah Aman</h2>
@@ -521,7 +587,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-15-madu-murni-habbatussauda-untuk-luka-lambung-h-pylori-cara-konsumsi-ben.html">
-      <img src="images/artikel-15-madu-murni-habbatussauda-untuk-luka-lambung-h-pylori-cara-konsumsi-ben.jpg" alt="Infografis edukasi kombinasi madu murni dan habbatussauda (thymoquinone) untuk membantu meredakan luka lambung dan infeksi H. pylori — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-15-madu-murni-habbatussauda-untuk-luka-lambung-h-pylori-cara-konsumsi-ben.jpg" alt="Infografis edukasi kombinasi madu murni dan habbatussauda (thymoquinone) untuk membantu meredakan luka lambung dan infeksi H. pylori — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #15</span>
         <h2>Madu Murni &amp; Habbatussauda untuk Luka Lambung &amp; H. pylori: Cara Konsumsi Benar</h2>
@@ -529,7 +595,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-16-jahe-merah-untuk-lambung-kapan-aman-kapan-justru-memicu-dada-panas.html">
-      <img src="images/artikel-16-jahe-merah-untuk-lambung-kapan-aman-kapan-justru-memicu-dada-panas.jpg" alt="Infografis edukasi jahe merah untuk asam lambung menjelaskan kapan jahe aman untuk mual dan kapan dosis pekat memicu panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-16-jahe-merah-untuk-lambung-kapan-aman-kapan-justru-memicu-dada-panas.jpg" alt="Infografis edukasi jahe merah untuk asam lambung menjelaskan kapan jahe aman untuk mual dan kapan dosis pekat memicu panas GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #16</span>
         <h2>Jahe Merah untuk Lambung: Kapan Aman &amp; Kapan Justru Memicu Dada Panas?</h2>
@@ -537,7 +603,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-17-gamat-teripang-emas-kolagen-alami-untuk-regenerasi-luka-dinding-lambun.html">
-      <img src="images/artikel-17-gamat-teripang-emas-kolagen-alami-untuk-regenerasi-luka-dinding-lambun.jpg" alt="Infografis edukasi gamat atau teripang emas dan kolagen alami untuk membantu regenerasi mukosa tukak lambung dan gastritis erosif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-17-gamat-teripang-emas-kolagen-alami-untuk-regenerasi-luka-dinding-lambun.jpg" alt="Infografis edukasi gamat atau teripang emas dan kolagen alami untuk membantu regenerasi mukosa tukak lambung dan gastritis erosif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #17</span>
         <h2>Gamat (Teripang Emas) &amp; Kolagen Alami untuk Regenerasi Luka Dinding Lambung</h2>
@@ -545,7 +611,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-18-akar-manis-licorice-dgl-vs-daun-peppermint-untuk-gerd-mitos-vs-fakta.html">
-      <img src="images/artikel-18-akar-manis-licorice-dgl-vs-daun-peppermint-untuk-gerd-mitos-vs-fakta.jpg" alt="Infografis perbandingan fakta medis akar manis (Licorice DGL) versus daun peppermint terhadap katup LES pada penderita GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-18-akar-manis-licorice-dgl-vs-daun-peppermint-untuk-gerd-mitos-vs-fakta.jpg" alt="Infografis perbandingan fakta medis akar manis (Licorice DGL) versus daun peppermint terhadap katup LES pada penderita GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #18</span>
         <h2>Akar Manis (Licorice / DGL) vs Daun Peppermint untuk GERD: Mitos vs Fakta</h2>
@@ -553,7 +619,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-19-daftar-makanan-aman-vs-pantangan-wajib-penderita-gerd-maag-kronis.html">
-      <img src="images/artikel-19-daftar-makanan-aman-vs-pantangan-wajib-penderita-gerd-maag-kronis.jpg" alt="Tabel perbandingan makanan aman versus pantangan wajib bagi penderita GERD dan maag kronis agar asam lambung tidak kambuh — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-19-daftar-makanan-aman-vs-pantangan-wajib-penderita-gerd-maag-kronis.jpg" alt="Tabel perbandingan makanan aman versus pantangan wajib bagi penderita GERD dan maag kronis agar asam lambung tidak kambuh — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #19</span>
         <h2>Daftar Makanan Aman vs Pantangan Wajib Penderita GERD &amp; Maag Kronis</h2>
@@ -561,7 +627,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-20-posisi-tidur-sunnah-untuk-asam-lambung-hikmah-miring-kanan-3-adab-anti.html">
-      <img src="images/artikel-20-posisi-tidur-sunnah-untuk-asam-lambung-hikmah-miring-kanan-3-adab-anti.jpg" alt="Infografis edukasi posisi tidur sunnah miring kanan sesuai hadits Rasulullah untuk penderita asam lambung GERD dengan elevasi kepala 15 sampai 20 cm — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-20-posisi-tidur-sunnah-untuk-asam-lambung-hikmah-miring-kanan-3-adab-anti.jpg" alt="Infografis edukasi posisi tidur sunnah miring kanan sesuai hadits Rasulullah untuk penderita asam lambung GERD dengan elevasi kepala 15 sampai 20 cm — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #20</span>
         <h2>Posisi Tidur Sunnah untuk Asam Lambung: Hikmah Miring Kanan &amp; 3 Adab Anti-Refluks</h2>
@@ -569,7 +635,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-21-menu-sarapan-jadwal-makan-ideal-untuk-lambung-sensitif-pola-porsi-keci.html">
-      <img src="images/artikel-21-menu-sarapan-jadwal-makan-ideal-untuk-lambung-sensitif-pola-porsi-keci.jpg" alt="Infografis jadwal makan dan menu sarapan ideal pola porsi kecil sering untuk penderita maag kronis dan lambung sensitif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-21-menu-sarapan-jadwal-makan-ideal-untuk-lambung-sensitif-pola-porsi-keci.jpg" alt="Infografis jadwal makan dan menu sarapan ideal pola porsi kecil sering untuk penderita maag kronis dan lambung sensitif — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #21</span>
         <h2>Menu Sarapan &amp; Jadwal Makan Ideal untuk Lambung Sensitif (Pola Porsi Kecil Sering)</h2>
@@ -577,7 +643,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-22-aturan-minum-kopi-teh-air-hangat-bagi-penderita-asam-lambung.html">
-      <img src="images/artikel-22-aturan-minum-kopi-teh-air-hangat-bagi-penderita-asam-lambung.jpg" alt="Infografis panduan aturan minum kopi, teh, dan air hangat yang aman bagi penderita asam lambung dan GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-22-aturan-minum-kopi-teh-air-hangat-bagi-penderita-asam-lambung.jpg" alt="Infografis panduan aturan minum kopi, teh, dan air hangat yang aman bagi penderita asam lambung dan GERD — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #22</span>
         <h2>Aturan Minum Kopi, Teh &amp; Air Hangat bagi Penderita Asam Lambung</h2>
@@ -585,7 +651,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-23-beda-maag-biasa-vs-gerd-vs-tukak-lambung-tabel-perbandingan-gejala-len.html">
-      <img src="images/artikel-23-beda-maag-biasa-vs-gerd-vs-tukak-lambung-tabel-perbandingan-gejala-len.jpg" alt="Tabel perbandingan lengkap perbedaan gejala maag biasa, GERD, dan tukak lambung berdasarkan lokasi nyeri dan penyebabnya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-23-beda-maag-biasa-vs-gerd-vs-tukak-lambung-tabel-perbandingan-gejala-len.jpg" alt="Tabel perbandingan lengkap perbedaan gejala maag biasa, GERD, dan tukak lambung berdasarkan lokasi nyeri dan penyebabnya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #23</span>
         <h2>Beda Maag Biasa vs GERD vs Tukak Lambung: Tabel Perbandingan Gejala Lengkap</h2>
@@ -593,7 +659,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-24-kenapa-asam-lambung-sering-kambuh-malam-hari-subuh-4-langkah-pencegaha.html">
-      <img src="images/artikel-24-kenapa-asam-lambung-sering-kambuh-malam-hari-subuh-4-langkah-pencegaha.jpg" alt="Infografis penjelasan medis mengapa asam lambung GERD sering kambuh di malam hari dan subuh beserta 4 langkah pencegahannya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-24-kenapa-asam-lambung-sering-kambuh-malam-hari-subuh-4-langkah-pencegaha.jpg" alt="Infografis penjelasan medis mengapa asam lambung GERD sering kambuh di malam hari dan subuh beserta 4 langkah pencegahannya — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #24</span>
         <h2>Kenapa Asam Lambung Sering Kambuh Malam Hari &amp; Subuh? 4 Langkah Pencegahannya</h2>
@@ -601,7 +667,7 @@ footer {
       </div>
     </a>
 <a class="card" href="artikel-25-faq-herbal-lambung-bolehkah-minum-herbal-bersamaan-dengan-obat-dokter-.html">
-      <img src="images/artikel-25-faq-herbal-lambung-bolehkah-minum-herbal-bersamaan-dengan-obat-dokter-.jpg" alt="Infografis FAQ edukasi keamanan minum ramuan herbal lambung bersamaan dengan obat dokter PPI atau antasida dengan aturan jeda waktu 2 jam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <img src="images/artikel-25-faq-herbal-lambung-bolehkah-minum-herbal-bersamaan-dengan-obat-dokter-.jpg" alt="Infografis FAQ edukasi keamanan minum ramuan herbal lambung bersamaan dengan obat dokter PPI atau antasida dengan aturan jeda waktu 2 jam — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="400" height="500" loading="lazy">
       <div class="card-body">
         <span class="badge">Seri Lambung #25</span>
         <h2>FAQ Herbal Lambung: Bolehkah Minum Herbal Bersamaan dengan Obat Dokter (PPI/Antasida)?</h2>

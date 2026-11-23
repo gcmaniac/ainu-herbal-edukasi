@@ -23,12 +23,40 @@
   --card: #ffffff;
 }
 * { box-sizing: border-box; }
+html, body {
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--cream);
   color: var(--ink);
   line-height: 1.7;
+  -webkit-tap-highlight-color: rgba(15, 81, 50, 0.15);
+}
+h1, h2, h3, [id] { scroll-margin-top: 24px; }
+h1, h2 { text-wrap: balance; }
+p { text-wrap: pretty; }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: #fff;
+  color: var(--emerald);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 1000;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 12px;
+  outline: 3px solid #d4af37;
+}
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 header.site-header {
   background: var(--emerald);
@@ -53,6 +81,8 @@ header.site-header {
   text-decoration: none;
   font-weight: 700;
   font-size: 1.15rem;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 .brand img {
   width: 44px;
@@ -61,14 +91,24 @@ header.site-header {
   object-fit: cover;
   border: 2px solid #d4af37;
 }
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 .nav-links a {
   color: #e9f5ee;
   text-decoration: none;
-  margin-left: 16px;
+  padding: 10px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.95rem;
   font-weight: 500;
+  border-radius: 8px;
+  touch-action: manipulation;
 }
-.nav-links a:hover { text-decoration: underline; }
+.nav-links a:hover { text-decoration: underline; background: rgba(255, 255, 255, 0.08); }
 main {
   max-width: 960px;
   margin: 28px auto;
@@ -104,18 +144,22 @@ main {
 }
 .card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   background: #edf3ef;
 }
 .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.75rem;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--emerald);
   background: #e3f3ea;
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   margin-bottom: 8px;
   width: fit-content;
@@ -129,14 +173,20 @@ article.post {
   padding: 28px;
 }
 article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line-height: 1.25; }
-.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; font-variant-numeric: tabular-nums; }
 .featured-img {
   width: 100%;
+  height: auto;
   max-width: 560px;
   display: block;
   margin: 0 auto 24px;
   border-radius: 12px;
   border: 1px solid var(--border);
+}
+.inline-icon {
+  display: inline-block;
+  vertical-align: -4px;
+  flex-shrink: 0;
 }
 .cta-box {
   background: #eaf6ef;
@@ -146,16 +196,20 @@ article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line
   margin: 28px 0;
 }
 .cta-btn {
-  display: inline-block;
-  background: var(--emerald-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  background: var(--emerald);
   color: #fff;
   text-decoration: none;
   font-weight: 700;
   padding: 11px 20px;
   border-radius: 8px;
   margin-top: 10px;
+  touch-action: manipulation;
 }
-.cta-btn:hover { background: var(--emerald); }
+.cta-btn:hover { background: var(--emerald-light); }
 .disclaimer {
   font-size: 0.85rem;
   color: var(--muted);
@@ -173,8 +227,19 @@ article.post h1 { margin-top: 0; color: var(--emerald); font-size: 1.85rem; line
 .related h2 { font-size: 1.2rem; color: var(--emerald); margin-top: 0; }
 .related ul { columns: 2; padding-left: 18px; }
 @media (max-width: 640px) { .related ul { columns: 1; } }
-.related a { color: var(--emerald); text-decoration: none; }
+.related a {
+  color: var(--emerald);
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 0;
+  min-height: 44px;
+  touch-action: manipulation;
+}
 .related a:hover { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
 footer {
   text-align: center;
   padding: 24px 20px;
@@ -184,16 +249,17 @@ footer {
   background: #fff;
 }
 </style>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalWebPage", "headline": "Habbatussauda untuk Diabetes & Gula Darah: Manfaat Thymoquinone & Takaran Aman", "description": "Habbatussauda untuk Diabetes & Gula Darah: Selain dianjurkan dalam Thibbun Nabawi sebagai ikhtiar menjaga kesehatan, jintan hitam (*Nigella sativa*) jug...", "image": "https://ainuherbal.netlify.app/images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg", "url": "https://ainuherbal.netlify.app/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.html", "datePublished": "2026-11-20", "dateModified": "2026-11-20", "inLanguage": "id-ID", "publisher": {"@type": "Organization", "name": "Ainu Herbal", "url": "https://ainuherbal.netlify.app", "logo": {"@type": "ImageObject", "url": "https://ainuherbal.netlify.app/images/ainu-herbal-logo.jpg"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apa ciri utama dan penyebab Habbatussauda untuk Diabetes & Gula Darah?", "acceptedAnswer": {"@type": "Answer", "text": "Habbatussauda untuk Diabetes & Gula Darah: Selain dianjurkan dalam Thibbun Nabawi sebagai ikhtiar menjaga kesehatan, jintan hitam (*Nigella sativa*) jug..."}}, {"@type": "Question", "name": "Bagaimana cara konsultasi pengobatan herbal alami di Ainu Herbal?", "acceptedAnswer": {"@type": "Answer", "text": "Anda dapat berkonsultasi langsung melalui WhatsApp resmi Ainu Herbal di 0852-8674-7289 (https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami.)."}}]}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MedicalWebPage", "headline": "Habbatussauda untuk Diabetes & Gula Darah: Manfaat Thymoquinone & Takaran Aman", "description": "Habbatussauda untuk Diabetes & Gula Darah: Selain dianjurkan dalam Thibbun Nabawi sebagai ikhtiar menjaga kesehatan, jintan hitam (*Nigella sativa*) jug...", "image": "https://ainuherbal.netlify.app/images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg", "url": "https://ainuherbal.netlify.app/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.html", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "inLanguage": "id-ID", "publisher": {"@type": "Organization", "name": "Ainu Herbal", "url": "https://ainuherbal.netlify.app", "logo": {"@type": "ImageObject", "url": "https://ainuherbal.netlify.app/images/ainu-herbal-logo.jpg"}}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apa ciri utama dan penyebab Habbatussauda untuk Diabetes & Gula Darah?", "acceptedAnswer": {"@type": "Answer", "text": "Habbatussauda untuk Diabetes & Gula Darah: Selain dianjurkan dalam Thibbun Nabawi sebagai ikhtiar menjaga kesehatan, jintan hitam (*Nigella sativa*) jug..."}}, {"@type": "Question", "name": "Bagaimana cara konsultasi pengobatan herbal alami di Ainu Herbal?", "acceptedAnswer": {"@type": "Answer", "text": "Anda dapat berkonsultasi langsung melalui WhatsApp resmi Ainu Herbal di 0852-8674-7289 (https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami.)."}}]}]}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">
-        <img src="images/ainu-herbal-logo.jpg" alt="Logo Ainu Herbal">
+        <img src="images/ainu-herbal-logo.jpg" alt="Logo Ainu Herbal" width="44" height="44">
         <span>Ainu Herbal</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Navigasi utama">
         <a href="index.html">Beranda</a>
         <a href="https://www.instagram.com/ainuherbal/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/1533000039886265" target="_blank" rel="noopener">Facebook</a>
@@ -201,12 +267,12 @@ footer {
       </nav>
     </div>
   </header>
-  <main>
+  <main id="main-content">
     <article class="post">
-      <span class="badge">Seri Diabetes #36 • Edukasi Herbal Alami</span>
+      <span class="badge"><img class="inline-icon" src="images/icons/leaf.svg" width="16" height="16" alt="" aria-hidden="true"> Seri Diabetes #36 • Edukasi Herbal Alami</span>
       <h1>Habbatussauda untuk Diabetes &amp; Gula Darah: Manfaat Thymoquinone &amp; Takaran Aman</h1>
-      <div class="meta">Oleh <strong>Ainu Herbal</strong> • Diperbarui 2026-11-20</div>
-      <img class="featured-img" src="images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg" alt="Infografis apotek herbal Habbatussauda (Nigella sativa) untuk membantu kontrol gula darah dan sensitivitas insulin berkat thymoquinone dengan takaran aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." loading="lazy">
+      <div class="meta">Oleh <strong>Ainu Herbal</strong> • Diperbarui 2026-11-23</div>
+      <img class="featured-img" src="images/artikel-36-habbatussauda-untuk-diabetes-gula-darah-manfaat-thymoquinone-takaran-a.jpg" alt="Infografis apotek herbal Habbatussauda (Nigella sativa) untuk membantu kontrol gula darah dan sensitivitas insulin berkat thymoquinone dengan takaran aman — Edukasi kesehatan &amp; pengobatan herbal alami oleh Ainu Herbal." width="560" height="700" fetchpriority="high">
       <p>Habbatussauda untuk Diabetes &amp; Gula Darah: Selain dianjurkan dalam Thibbun Nabawi sebagai ikhtiar menjaga kesehatan, jintan hitam (*Nigella sativa*) juga banyak diteliti efeknya dalam membantu metabolisme glukosa.</p>
 <p><strong>Senyawa aktif utamanya bernama **Thymoquinone** yang bekerja secara bertahap membantu tubuh dari dua sisi:</strong></p>
 <ul><li>1. **Antioksidan Pelindung Pankreas:** Membantu meredam stres oksidatif dan peradangan kronis yang sering membebani sel beta pankreas.</li><li>2. **Dukungan Sensitivitas Insulin:** Dalam beberapa kajian pendahuluan, konsumsi teratur dalam takaran wajar membantu sel tubuh merespons insulin lebih baik.</li></ul>
@@ -214,15 +280,15 @@ footer {
 <ul><li>• Gunakan takaran lazim harian (misal 1–2 kapsul ekstrak terstandar BPOM atau ±1 sendok teh minyak murni sesuai aturan kemasan).</li><li>• **Jangan langsung digabung di jam yang sama** dengan obat diabetes dokter — beri **jeda 2–3 jam** dan pantau gula darah rutin untuk menghindari gula drop.</li><li>• Mulai perlahan setelah makan bila Anda juga punya riwayat lambung sensitif.</li></ul>
 <p>Simpan catatan Thibbun Nabawi yang terukur dan aman ini!</p>
       <div class="cta-box">
-        <strong>🌿 Konsultasi Pengobatan Herbal Alami — Ainu Herbal</strong><br>
+        <strong><img class="inline-icon" src="images/icons/shield-check.svg" width="20" height="20" alt="" aria-hidden="true"> Konsultasi Pengobatan Herbal Alami — Ainu Herbal</strong><br>
         Ingin tahu ikhtiar herbal alami yang aman dan sesuai untuk keluhan kesehatan Anda? Hubungi tim edukasi kami langsung via WhatsApp resmi.<br>
-        <a class="cta-btn" href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener">📲 Konsultasi WA: 0852-8674-7289</a>
+        <a class="cta-btn" href="https://wa.me/6285286747289?text=Halo%20Ainu%20Herbal%2C%20saya%20ingin%20konsultasi%20pengobatan%20herbal%20alami." target="_blank" rel="noopener"><img class="inline-icon" src="images/icons/phone-call.svg" width="20" height="20" alt="" aria-hidden="true"> Konsultasi WA: 0852-8674-7289</a>
       </div>
       <div class="disclaimer">
-        <strong>Catatan Medis (YMYL Diabetes):</strong> Informasi ini bersifat edukasi kesehatan umum dan tidak menggantikan diagnosis, resep, atau penyesuaian dosis insulin/obat diabetes dari dokter. Jangan menghentikan obat medis secara mendadak, beri jeda minimal 2–3 jam jika mengonsumsi herbal pendamping, dan segera ke IGD bila gula darah &lt;70 mg/dL (gemetar/keringat dingin) atau &gt;300 mg/dL disertai sesak napas/muntah atau luka kaki menghitam.
+        <img class="inline-icon" src="images/icons/triangle-alert.svg" width="18" height="18" alt="" aria-hidden="true"> <strong>Catatan Medis (YMYL Diabetes):</strong> Informasi ini bersifat edukasi kesehatan umum dan tidak menggantikan diagnosis, resep, atau penyesuaian dosis insulin/obat diabetes dari dokter. Jangan menghentikan obat medis secara mendadak, beri jeda minimal 2–3 jam jika mengonsumsi herbal pendamping, dan segera ke IGD bila gula darah &lt;70 mg/dL (gemetar/keringat dingin) atau &gt;300 mg/dL disertai sesak napas/muntah atau luka kaki menghitam.
       </div>
       <section class="related">
-        <h2>Artikel Seri Diabetes &amp; Edukasi Kesehatan Lainnya</h2>
+        <h2><img class="inline-icon" src="images/icons/book-open.svg" width="20" height="20" alt="" aria-hidden="true"> Artikel Seri Diabetes &amp; Edukasi Kesehatan Lainnya</h2>
         <ul>
           <li><a href="artikel-26-gejala-awal-diabetes-yang-sering-diabaikan-6-sinyal-tubuh-sebelum-terl.html">[Seri Diabetes #26] Gejala Awal Diabetes yang Sering Diabaikan: 6 Sinyal Tubuh Sebelum Terlambat</a></li>
 <li><a href="artikel-27-resistensi-insulin-kenapa-gula-darah-tinggi-padahal-sudah-kurangi-gula.html">[Seri Diabetes #27] Resistensi Insulin: Kenapa Gula Darah Tinggi Padahal Sudah Kurangi Gula Pasir?</a></li>
